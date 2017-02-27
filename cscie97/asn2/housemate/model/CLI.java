@@ -21,7 +21,6 @@ import cscie97.asn2.housemate.exception.ImportException;
  */
 public class CLI {
 	public static void importFile(String fileName) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException, ImportException {
-
     	File file = new File(fileName);
     	if(!file.exists()){
     		ImportException importException = new ImportException(0, "", "Input file "+fileName+" does not exist");

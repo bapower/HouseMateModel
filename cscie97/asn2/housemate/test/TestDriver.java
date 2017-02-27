@@ -12,12 +12,11 @@ import cscie97.asn2.housemate.model.CLI;
 public class TestDriver {
 	public static void main(String args[])  {
 		String inputFile = args[0];
-    	
     	try {
     		CLI.importFile(inputFile);
         } 
     	catch (Exception exception) {
-    		System.out.println("That file name was not found.");
+    		System.out.println(exception.getMessage());
         }
 	}
 }
