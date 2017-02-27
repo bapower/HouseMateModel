@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import cscie97.asn2.housemate.exception.ImportException;
 
 /**
- * @author Bry
+ * @author Bry Power
  *
  */
 public class CLI {
@@ -36,10 +36,10 @@ public class CLI {
         try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
+            	inputLine = inputLine.trim();
 	            if (inputLine.isEmpty() || inputLine.contains("#")) {
-	                	continue;
+	                continue;
 	            }
-	   
 	            processCommand(inputLine);
             }
         }
@@ -47,12 +47,13 @@ public class CLI {
         	System.out.println("not found");
         }
         catch (IOException exception) {
-        	System.out.println(exception);
+        	System.out.println("IOexception");
         }
     	
 	}
 	
 	public static void processCommand (String command) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+		System.out.println(command);
 		String[] tokens;
 		tokens = command.split("\\s+");
 		ModelGraph modelGraph = ModelGraph.getInstance();
@@ -83,13 +84,12 @@ public class CLI {
 		else if (tokens[0].equals("show")) {
 			if(tokens.length == 3){
 				modelGraph.showDevice(tokens[2]);
-			}
-			else if(tokens.length > 3)
-				modelGraph.showDevice(tokens[2], tokens[4]);	
+			}	
 			else if (tokens[1].equals("configuration") && tokens.length == 2l){
 				modelGraph.showConfiguration();
 			}
 			else if (tokens[1].equals("configuration") && tokens[2].equals("house")){
+				System.out.println("show house");
 				modelGraph.showHouseConfiguration(tokens[3]);
 			}
 			else if (tokens[1].equals("configuration") && tokens[2].equals("room")){

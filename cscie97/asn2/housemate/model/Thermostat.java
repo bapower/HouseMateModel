@@ -8,7 +8,7 @@ package cscie97.asn2.housemate.model;
  *
  */
 public class Thermostat extends Device {
-	private String temp = "70";
+	private String temperature = "70";
 	
 	/**
 	 * @param identifier
@@ -19,15 +19,15 @@ public class Thermostat extends Device {
 		super.type = DeviceType.APPLIANCE;
 	}
 	
-	public String getTemp(){
-    	return temp;
+	public String getTemerature(){
+    	return temperature;
     }
     
-    public void setTemp(String temp){
-    	this.temp = temp;
+    public void setTemperature(String temperature){
+    	this.temperature = temperature;
     }
   
     public String getConfiguration () {
-    	return "Power: " + power + ", Tempurature: " + temp;
+    	return "Power: " + power + ", Tempurature: " + temperature;
     }
 }

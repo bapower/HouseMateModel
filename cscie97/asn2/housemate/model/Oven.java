@@ -8,7 +8,7 @@ package cscie97.asn2.housemate.model;
  *
  */
 public class Oven extends Device {
-	private String temp = "350";
+	private String temperature = "350";
 	private String timer = "45";
 	
 	/**
@@ -20,12 +20,12 @@ public class Oven extends Device {
 		super.type = DeviceType.APPLIANCE;
 	}
 	
-	public String getTemp(){
-    	return temp;
+	public String getTemperature(){
+    	return temperature;
     }
     
-    public void setTemp(String temp){
-    	this.temp = temp;
+    public void setTemperature(String temperature){
+    	this.temperature = temperature;
     }
     
     public String getTimer(){
@@ -37,6 +37,6 @@ public class Oven extends Device {
     }
     
     public String getConfiguration () {
-    	return "Power: " + power + ", Tempurature: " + temp + ", Timer: " + timer;
+    	return "Power: " + power + ", Tempurature: " + temperature + ", Timer: " + timer;
     }
 }

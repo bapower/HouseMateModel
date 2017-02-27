@@ -49,28 +49,33 @@ public class ModelGraph {
     }
 	
 	public void defineHouse (String identifier) {
+		System.out.println("defining " + identifier);
 		House house = new House(identifier);
 		houseMap.put(identifier.toLowerCase(), house);
 	}
 	
 	public void defineRoom (String identifier, String floor, String type, String houseIdentifier) {
+		System.out.println("defining " + identifier);
 		Room room = new Room(identifier, Integer.parseInt(floor), RoomType.valueOf(type.toUpperCase()));
 		House house = houseMap.get(houseIdentifier);
 		house.roomMap.put(identifier, room);
 	}
 	
 	public void defineOccupant (String identifier, String type) {
+		System.out.println("defining " + identifier);
 		Occupant occupant = new Occupant(identifier, OccupantType.valueOf(type.toUpperCase()));
 		occupantMap.put(identifier, occupant);
 	}
 	
 	public void addOccupant (String identifier, String houseIdentifier) {
+		System.out.println("defining " + identifier);
 		Occupant occupant = occupantMap.get(identifier);
 		House house = houseMap.get(houseIdentifier);
 		house.occupantMap.put(identifier, occupant);
 	}
 	
 	public void defineDevice (String identifier, String type, String houseRoomIdentifier) {
+		System.out.println("defining " + identifier);
 		String[] tokens = houseRoomIdentifier.split(":");
     	String houseIdentifier  = tokens[0];
     	String roomIdentifier = tokens[1];
@@ -121,8 +126,9 @@ public class ModelGraph {
 	                    break;
 			}	
 	}
-	
+	//set  appliance house1:kitchen1:oven1 status power value ON
 	public void setDevice (String houseRoomDeviceIdentifier, String status, String value) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		System.out.println("setting " + houseRoomDeviceIdentifier);
 		String[] tokens = houseRoomDeviceIdentifier.split(":");
     	String houseIdentifier  = tokens[0];
     	String roomIdentifier = tokens[1];
@@ -131,8 +137,9 @@ public class ModelGraph {
     	House house = houseMap.get(houseIdentifier);
 		Room room = house.roomMap.get(roomIdentifier);
 		Device device = room.deviceMap.get(deviceIdentifier);
-		
-		status = status.toLowerCase().substring(0, 1).toUpperCase();
+	
+		status = status.substring(0, 1).toUpperCase() + status.substring(1).toLowerCase();
+		System.out.println("status " + status);
 		Method method = null;
 		try {
 			method = device.getClass().getMethod("set" + status, value.getClass());
@@ -141,6 +148,7 @@ public class ModelGraph {
 	}
 	
 	public void showDevice (String houseRoomDeviceIdentifier, String status) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+		System.out.println("showing " + houseRoomDeviceIdentifier);
 		String[] tokens = houseRoomDeviceIdentifier.split(":");
     	String houseIdentifier  = tokens[0];
     	String roomIdentifier = tokens[1];
@@ -150,7 +158,7 @@ public class ModelGraph {
 		Room room = house.roomMap.get(roomIdentifier);
 		Device device = room.deviceMap.get(deviceIdentifier);
 		
-		status = status.toLowerCase().substring(0, 1).toUpperCase();
+		status = status.substring(0, 1).toUpperCase() + status.substring(1).toLowerCase();
 		Method method = null;
 		try {
 			method = device.getClass().getMethod("get" + status);
@@ -159,6 +167,7 @@ public class ModelGraph {
 	}
 			
 	public void showDevice (String houseRoomDeviceIdentifier) {
+		System.out.println("showing " + houseRoomDeviceIdentifier);
 		String[] tokens = houseRoomDeviceIdentifier.split(":");
     	String houseIdentifier  = tokens[0];
     	String roomIdentifier = tokens[1];
@@ -172,22 +181,25 @@ public class ModelGraph {
 	}
 	
 	public void showHouseConfiguration (String houseIdentifier) {	
+		System.out.println("showing " + houseIdentifier + " config");
     	House house = houseMap.get(houseIdentifier);
 		System.out.println(house.getConfiguration());
 	}
 	
 	public void showRoomConfiguration (String houseRoomIdentifier) {	
+		System.out.println("showing " + houseRoomIdentifier + " config");
 		String[] tokens = houseRoomIdentifier.split(":");
     	String houseIdentifier  = tokens[0];
     	String roomIdentifier = tokens[1];
     	
     	House house = houseMap.get(houseIdentifier);
 		Room room = house.roomMap.get(roomIdentifier);
-    	
+		System.out.println(room.toString());
 		System.out.println(room.getConfiguration());
 	}
 	
 	public void showConfiguration () {
+		System.out.println("showing all config");
 		System.out.println("Houses: " + houseMap.toString() + ", Occupants: " + occupantMap.toString());
 	}
 	

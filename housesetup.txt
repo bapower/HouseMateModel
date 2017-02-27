@@ -38,15 +38,3 @@ show configuration room house1:kitchen1
 #	show configurations for all houses
 show configuration
 
-
-
-<string, Node>
-
-Querymap
-?
-
-Identifiers - houses 
-
-Houses - rooms - 
-
-

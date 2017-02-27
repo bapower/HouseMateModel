@@ -60,6 +60,6 @@ public class Room {
     }
     
     public String getConfiguration () {
-    	return "Floor: " + floor + ", Room type: " + type + ", Occupants: " + occupants.toString() + ", Devices: " + deviceMap.toString();
+    	return "Floor: " + floor + ", Room type: " + type + ", Devices: " + deviceMap.toString();
     }
 }

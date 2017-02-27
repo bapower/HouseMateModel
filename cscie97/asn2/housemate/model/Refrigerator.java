@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 public class Refrigerator extends Device {
-	private String temp = "40";
+	private String temperature = "40";
 	
 	private List<String> contents;
 	
@@ -23,12 +23,12 @@ public class Refrigerator extends Device {
 		super.type = DeviceType.APPLIANCE;
 	}
 	
-	public String getTemp(){
-    	return temp;
+	public String getTemperature(){
+    	return temperature;
     }
     
-    public void setTemp(String temp){
-    	this.temp = temp;
+    public void setTemperature(String temperature){
+    	this.temperature = temperature;
     }
     
     public void addContents (String item) {
@@ -40,6 +40,6 @@ public class Refrigerator extends Device {
     }
     
     public String getConfiguration () {
-    	return "Power: " + power + ", Tempurature: " + temp + ", Contents: " + contents.toString();
+    	return "Power: " + power + ", Tempurature: " + temperature + ", Contents: " + contents.toString();
     }
 }
