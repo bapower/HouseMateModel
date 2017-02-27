@@ -13,17 +13,20 @@ import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cscie97.asn2.housemate.exception.ImportException;
+
 /**
  * @author Bry
  *
  */
 public class CLI {
-	public static void importFile(String fileName) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+	public static void importFile(String fileName) throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException, ImportException {
 
     	File file = new File(fileName);
     	if(!file.exists()){
-    		System.out.println("Please include a housesetup.txt file when running the program.");
-    		System.exit(0);
+    		ImportException importException = new ImportException(0, "", "Input file "+fileName+" does not exist");
+			throw importException;
+
     	} else {
 	    	Pattern extensionPattern = Pattern.compile("([^\\s]+(\\.(?i)(txt))$)");
 	    	Matcher match = extensionPattern.matcher(fileName);
@@ -42,7 +45,7 @@ public class CLI {
             }
         }
         catch (FileNotFoundException exception) {
-        	System.out.println("The housesetup.txt file not found.");
+        	System.out.println("not found");
         }
         catch (IOException exception) {
         	System.out.println(exception);

@@ -17,7 +17,7 @@ public class TestDriver {
     		CLI.importFile(inputFile);
         } 
     	catch (Exception exception) {
-    		System.out.println("The housesetup.txt file not found.");
+    		System.out.println("That file name was not found.");
         }
 	}
 }
