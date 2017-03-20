@@ -3,31 +3,44 @@ define house house1
 
 # 	define a new room instance and attach to a house
 define room kitchen1 floor 1 type kitchen house house1
+define room livingroom1 floor 1 type livingroom house house1
 	
 #	define a new occupant
-define occupant joe_smith type adult
+define occupant joe type adult
+define occupant oliver type child
 
 #	add joe_smith as an occupant to house1
-add occupant joe_smith to_house house1
+add occupant joe to_house house1
+add occupant oliver to_house house1
 
 #	create a new sensor in a room
-define sensor smoke_detector1 type smoke_detector room house1:kitchen1
+define sensor smokedetector1 type smokedetector room house1:kitchen1
 
 #	create a new appliance instance
 define appliance oven1 type oven room house1:kitchen1
+define appliance ava1 type ava room house1:livingroom1
+define appliance ava2 type ava room house1:kitchen1
+define appliance camera1 type camera room house1:livingroom1
+define appliance door1 type door room house1:livingroom1
+define appliance light1 type light room house1:livingroom1
+define appliance light2 type light room house1:livingroom1
+define appliance tv1 type tv room house1:livingroom1
+define appliance thermostat1 type thermostat room house1:livingroom1
+define appliance phone1 type phone room house1:livingroom1
+define appliance refrigerator1 type refrigerator room house1:kitchen1
 
 #	turn the oven on and set the temperature to 350 degrees
-set  appliance house1:kitchen1:oven1 status power value ON
-set  appliance house1:kitchen1:oven1 status temperature value 350
+set appliance house1:kitchen1:oven1 status power value ON
+set appliance house1:kitchen1:oven1 status temperature value 350
 	 
 #	show the temperature of the oven
-show  appliance house1:kitchen1:oven1 status temperature  
+show appliance house1:kitchen1:oven1 status temperature  
 	
 # 	show all state for the oven  
-show  appliance house1:kitchen1:oven1  
+show appliance house1:kitchen1:oven1  
 	 
 # 	show all state for the smoke detector  
-show  sensor house1:kitchen1:smoke_detector1  
+show sensor house1:kitchen1:smokedetector1  
 	 
 # 	show the configuration for the house1
 show configuration house house1
@@ -37,4 +50,48 @@ show configuration room house1:kitchen1
 	 
 #	show configurations for all houses
 show configuration
+
+# show ava hearing door open command
+set appliance house1:livingroom1:ava1 status voiceInput value open_door
+
+# show ava hearing door close command
+set appliance house1:livingroom1:ava1 status voiceInput value close_door
+
+# show ava hearing lights on command
+set appliance house1:livingroom1:ava1 status voiceInput value lights_on
+
+# show ava hearing lights off command
+set appliance house1:livingroom1:ava1 status voiceInput value lights_off
+
+# show ava hearing generic device command
+set appliance house1:livingroom1:ava1 status voiceInput value set_tv_volume_10
+
+# show occupant entering room
+set appliance house1:livingroom1:camera1 status stateChange value location_john_entered
+set appliance house1:livingroom1:camera1 status stateChange value location_oliver_entered
+
+# show ava hearing occupant location question
+set appliance house1:livingroom1:ava1 status voiceInput value where_is_oliver
+
+# show occupant falling asleep
+set appliance house1:livingroom1:camera1 status stateChange value awake_john_false
+set appliance house1:livingroom1:camera1 status stateChange value awake_oliver_false
+
+# show occupant waking up
+set appliance house1:livingroom1:camera1 status stateChange value awake_john_true
+
+# show smoke detector in fire mode
+set appliance house1:kitchen1:smokedetector1 status fireMode value on
+
+# show occupant exiting room
+set appliance house1:livingroom1:camera1 status stateChange value location_john_exited
+set appliance house1:livingroom1:camera1 status stateChange value location_oliver_exited
+
+# show oven timer going to 0
+set appliance house1:kitchen1:oven1 status timer value 0
+
+# show refrigerator beer count changing
+set appliance house1:kitchen1:refrigerator1 status takeBeers value 7
+
+
 

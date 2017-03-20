@@ -1,0 +1,18 @@
+define house1
+define kitchen1
+define joe_smith
+add joe_smith to house
+define smoke_detector1
+define oven1
+set power of house1:kitchen1:oven1 to ON
+set temperature of house1:kitchen1:oven1 to 350
+device house1:kitchen1:oven1 config: 
+Power: ON, Tempurature: 350, Timer: 45
+device house1:kitchen1:smoke_detector1 config: 
+Power: ON, Alarm on: OFF
+house house1 config: 
+Floors: 1, Rooms: kitchen1, , Occupants: joe_smith, 
+room house1:kitchen1 config: 
+Floor: 1, Room type: KITCHEN, Devices: oven1, smoke_detector1, 
+All config: 
+Houses: house1, , Occupants: joe_smith, 
