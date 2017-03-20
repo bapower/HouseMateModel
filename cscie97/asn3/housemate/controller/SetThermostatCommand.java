@@ -3,6 +3,9 @@
  */
 package cscie97.asn3.housemate.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 
 import cscie97.asn3.housemate.model.ModelAPI;
@@ -30,6 +33,7 @@ public class SetThermostatCommand implements Command {
 	@Override
 	public void execute() {
 		try {
+			store();
 			API.setDevice(identifier, "temperature", value);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
@@ -41,17 +45,13 @@ public class SetThermostatCommand implements Command {
 	 */
 	@Override
 	public void store() {
-		// TODO Auto-generated method stub
-
+		try(
+			FileOutputStream fos = new FileOutputStream("command_log.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+		) {
+			oos.writeObject(this);
+		} catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+		}
 	}
-
-	/* (non-Javadoc)
-	 * @see cscie97.asn3.housemate.controller.Command#load()
-	 */
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

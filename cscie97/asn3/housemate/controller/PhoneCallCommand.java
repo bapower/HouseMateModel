@@ -33,6 +33,7 @@ public class PhoneCallCommand implements Command {
 	@Override
 	public void execute() {
 		try {
+			store();
 			API.setDevice(identifier, "call", value);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
@@ -54,14 +55,4 @@ public class PhoneCallCommand implements Command {
 			System.out.println(ioe.getMessage());
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see cscie97.asn3.housemate.controller.Command#load()
-	 */
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -43,14 +43,4 @@ public class MacroCommand implements Command {
 		// TODO Auto-generated method stub
 
 	}
-
-	/* (non-Javadoc)
-	 * @see cscie97.asn3.housemate.controller.Command#load()
-	 */
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

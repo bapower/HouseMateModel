@@ -58,14 +58,4 @@ public class SetDeviceCommand implements Command {
 			System.out.println(ioe.getMessage());
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see cscie97.asn3.housemate.controller.Command#load()
-	 */
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

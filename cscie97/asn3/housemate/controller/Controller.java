@@ -3,7 +3,14 @@
  */
 package cscie97.asn3.housemate.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -54,5 +61,28 @@ public class Controller implements Observer {
 		}
 
 	}
-
+	
+	public void load() {
+		Command[] commands = null;
+		try(
+			FileInputStream fis = new FileInputStream("command_log.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+		) {
+			commands = (Command[]) ois.readObject();
+		} catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+		}catch (ClassNotFoundException cnfe) {
+			System.out.println(cnfe.getMessage());
+		}
+		if (commands != null){
+			for (Command command : commands) {
+				try {
+					command.execute();
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+						| NoSuchMethodException | SecurityException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+	}
 } 

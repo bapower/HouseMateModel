@@ -14,6 +14,4 @@ public interface Command {
 	public void execute() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException;
 	
 	public void store();
-	
-	public void load();
 }

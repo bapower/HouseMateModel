@@ -3,6 +3,9 @@
  */
 package cscie97.asn3.housemate.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Set;
@@ -35,6 +38,7 @@ public class ShowOccupantCommand implements Command {
 	 */
 	@Override
 	public void execute() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		store();
 		Set<Triple> triples = knowledgeGraph.executeQuery(identifier, "in", "?");
 		if(triples.size() > 0) {
 			Iterator<Triple> entries = triples.iterator();
@@ -51,17 +55,13 @@ public class ShowOccupantCommand implements Command {
 	 */
 	@Override
 	public void store() {
-		// TODO Auto-generated method stub
-
+		try(
+			FileOutputStream fos = new FileOutputStream("command_log.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+		) {
+			oos.writeObject(this);
+		} catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+		}
 	}
-
-	/* (non-Javadoc)
-	 * @see cscie97.asn3.housemate.controller.Command#load()
-	 */
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
-	}
-
 }
